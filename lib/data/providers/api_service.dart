@@ -1,64 +1,50 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:goldyu/core/helpers/secure_storage_helper.dart';
 
-class DioClient {
-  final Dio _dio = Dio(BaseOptions(baseUrl: 'https://your-backend-url.com'));
-
-  DioClient() {
-    _dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
-          // Add token to the headers
-          String? token = await SecureStorageHelper.getToken();
-          if (token != null) {
-            options.headers['Authorization'] = 'Bearer $token';
-          }
-          return handler.next(options); // Continue the request
-        },
-        onError: (error, handler) async {
-          if (error.response?.statusCode == 401) {
-            // Handle invalid token
-            await SecureStorageHelper.deleteToken();
-            print('Token is invalid. Redirecting to login...');
-            // Optionally, show a dialog or navigate to login
-          }
-          return handler.next(error);
-        },
-      ),
-    );
-  }
+class HttpClient {
+  static const String baseUrl = 'http://10.0.2.2:8000/api';
 
   /// GET request
-  Future<Response> get(String endpoint,
-      {Map<String, dynamic>? queryParameters,
-      Map<String, dynamic>? headers}) async {
+  static Future<http.Response> get(String endpoint) async {
+    final uri = Uri.parse('$baseUrl$endpoint');
+    final headers = await _buildHeaders();
     try {
-      return await _dio.get(endpoint,
-          queryParameters: queryParameters, options: Options(headers: headers));
+      return await http.get(uri, headers: headers);
     } catch (e) {
-      rethrow; // Let the caller handle errors
+      rethrow;
     }
   }
 
   /// POST request
-  Future<Response> post(String endpoint,
-      {dynamic data, Map<String, dynamic>? headers}) async {
+  static Future<http.Response> post(String endpoint, {dynamic data}) async {
+    final uri = Uri.parse('$baseUrl$endpoint');
+    final headers = await _buildHeaders();
     try {
-      return await _dio.post(endpoint,
-          data: data, options: Options(headers: headers));
+      return await http.post(uri, headers: headers, body: jsonEncode(data));
     } catch (e) {
       rethrow;
     }
   }
 
   /// DELETE request
-  Future<Response> delete(String endpoint,
-      {dynamic data, Map<String, dynamic>? headers}) async {
+  static Future<http.Response> delete(String endpoint, {dynamic data}) async {
+    final uri = Uri.parse('$baseUrl$endpoint');
+    final headers = await _buildHeaders();
     try {
-      return await _dio.delete(endpoint,
-          data: data, options: Options(headers: headers));
+      return await http.delete(uri, headers: headers, body: jsonEncode(data));
     } catch (e) {
       rethrow;
     }
+  }
+
+  /// Build headers with Authorization token and default content type
+  static Future<Map<String, String>> _buildHeaders() async {
+    String? token = await SecureStorageHelper.getToken();
+    return {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      if (token != null) 'Authorization': 'Bearer $token',
+    };
   }
 }

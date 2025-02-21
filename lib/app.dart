@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goldyu/common/screens/home/home_screnn.dart';
 import 'package:goldyu/core/theme/theme.dart';
-import 'package:goldyu/features/authentication/screens/onboarding.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.dartTheme,
-      home: const OnboardingScreen(),
+      home: HomeScreen(),
     );
   }
 }
