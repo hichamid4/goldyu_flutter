@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:goldyu/common/models/category.dart';
 import 'package:goldyu/core/helpers/secure_storage_helper.dart';
 import 'package:goldyu/data/providers/api_service.dart';
 
@@ -25,10 +26,16 @@ class HomeScreen extends StatelessWidget {
   void categories() async {
     HttpClient.get('/categories').then((response) {
       if (response.statusCode == 200) {
-        print('Categories: ${jsonDecode(response.body)}');
+        dynamic res = jsonDecode(response.body);
+        List<Category> categories = (res as List)
+            .map((category) => Category.fromJson(category))
+            .cast<Category>()
+            .toList();
+        print('Categories: ${categories}');
       } else {
+        dynamic res = jsonDecode(response.body);
         print(
-            'Failed to fetch categories. Status code: ${response.statusCode}');
+            'Failed to fetch categories. Status code: ${response.statusCode}, Message: ${res['message']}');
       }
     }).catchError((error) {
       print('Error: $error');
