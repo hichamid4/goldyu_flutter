@@ -8,7 +8,7 @@ class TImages {
   static const String google = 'assets/logos/google-icon.png';
 
   // -- Onboarding
-  static const String onboarding1 = 'assets/animations/business-analysis.json';
-  static const String onboarding2 = 'assets/animations/web-design-layout.json';
-  static const String onboarding3 = 'assets/animations/business-analysis.json';
+  static const String onboarding1 = 'assets/onboardings/onboarding1.png';
+  static const String onboarding2 = 'assets/onboardings/onboarding2.png';
+  static const String onboarding3 = 'assets/onboardings/onboarding3.png';
 }
