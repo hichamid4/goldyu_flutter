@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:goldyu/core/constants/image_strings.dart';
 import 'package:goldyu/core/constants/text_strings.dart';
+import 'package:goldyu/features/authentication/controllers/onboarding.controller.dart';
 import 'package:goldyu/features/authentication/screens/onboarding/widgets/onboarding.dot.navigation.dart';
 import 'package:goldyu/features/authentication/screens/onboarding/widgets/onboarding.next.button.dart';
 import 'package:goldyu/features/authentication/screens/onboarding/widgets/onboarding.page.dart';
@@ -12,11 +14,15 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(OnboardingController());
+
     return Scaffold(
       body: Stack(
         children: [
           // Horizontal Scrollable Pages
           PageView(
+            controller: controller.pageController,
+            onPageChanged: controller.updatePageIndicator,
             children: [
               const OnBoardingPage(
                 image: TImages.onboarding1,

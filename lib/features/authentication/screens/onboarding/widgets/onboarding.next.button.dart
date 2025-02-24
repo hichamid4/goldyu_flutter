@@ -3,6 +3,7 @@ import 'package:goldyu/core/constants/colors.dart';
 import 'package:goldyu/core/constants/sizes.dart';
 import 'package:goldyu/core/device/device_core.dart';
 import 'package:goldyu/core/helpers/helper_functions.dart';
+import 'package:goldyu/features/authentication/controllers/onboarding.controller.dart';
 import 'package:iconsax/iconsax.dart';
 
 class OnBoardingNextButton extends StatelessWidget {
@@ -18,7 +19,7 @@ class OnBoardingNextButton extends StatelessWidget {
       right: TSizes.defaultSpace,
       bottom: TDeviceCore.getBottomNavigationBarHeight(),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => OnboardingController.instance.nextPage(),
         style: ElevatedButton.styleFrom(
           shape: const CircleBorder(),
           backgroundColor: dark ? TColors.primaryColor : Colors.black,

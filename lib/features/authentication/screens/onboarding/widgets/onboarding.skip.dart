@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goldyu/core/constants/sizes.dart';
 import 'package:goldyu/core/device/device_core.dart';
+import 'package:goldyu/features/authentication/controllers/onboarding.controller.dart';
 
 class OnBoardingSkip extends StatelessWidget {
   const OnBoardingSkip({
@@ -13,7 +14,7 @@ class OnBoardingSkip extends StatelessWidget {
       top: TDeviceCore.getAppBarHeight(),
       right: TSizes.defaultSpace - 15,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () => OnboardingController.instance.skipPage(),
         child: const Text('Skip'),
       ),
     );
