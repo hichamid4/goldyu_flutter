@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goldyu/core/constants/colors.dart';
 import 'package:goldyu/core/constants/sizes.dart';
 import 'package:goldyu/core/constants/text_strings.dart';
-import 'package:goldyu/core/helpers/helper_functions.dart';
 import 'package:goldyu/features/authentication/screens/signup/verify_phone_number.dart';
 import 'package:goldyu/features/authentication/screens/signup/widgets/terms_condiotions_checkbox.dart';
 import 'package:iconsax/iconsax.dart';

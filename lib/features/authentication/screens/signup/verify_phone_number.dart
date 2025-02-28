@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:goldyu/common/widgets/General/success_screen.dart';
 import 'package:goldyu/core/constants/image_strings.dart';
 import 'package:goldyu/core/constants/sizes.dart';
 import 'package:goldyu/core/constants/text_strings.dart';
@@ -60,7 +62,12 @@ class VerifyPhoneScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Get.to(() => SuccessScreen(
+                        image: TImages.staticSuccessIllustration,
+                        title: TTexts.yourAccountCreateTitle,
+                        subtitle: TTexts.yourAccountCreatedSubtitle,
+                        onPressed: () => Get.to(() => const LoginScreen()),
+                      )),
                   child: const Text(TTexts.continuue),
                 ),
               ),
