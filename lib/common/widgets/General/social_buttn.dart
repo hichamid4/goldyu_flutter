@@ -13,9 +13,10 @@ class TSocialButtons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // Google
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: TColors.grey),
+            border: Border.all(color: TColors.softGrey),
             borderRadius: BorderRadius.circular(100),
           ),
           child: const Image(
@@ -24,10 +25,14 @@ class TSocialButtons extends StatelessWidget {
             image: AssetImage(TImages.google),
           ),
         ),
+
+        // Space
         const SizedBox(width: TSizes.spaceBtwItems),
+
+        // Facebook
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: TColors.grey),
+            border: Border.all(color: TColors.softGrey),
             borderRadius: BorderRadius.circular(100),
           ),
           child: const Image(
