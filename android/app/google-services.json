@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "509890368130",
+    "project_id": "goldyu-eed7f",
+    "storage_bucket": "goldyu-eed7f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509890368130:android:e0752c26b994d5ddf49a9b",
+        "android_client_info": {
+          "package_name": "com.example.goldyu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD61LtvHc0842b9MKHMjv8uZke0mG6il-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
