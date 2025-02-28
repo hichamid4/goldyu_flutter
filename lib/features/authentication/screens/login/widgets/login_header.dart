@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:goldyu/core/constants/image_strings.dart';
 import 'package:goldyu/core/constants/sizes.dart';
 import 'package:goldyu/core/constants/text_strings.dart';
-import 'package:goldyu/core/helpers/helper_functions.dart';
+// import 'package:goldyu/core/helpers/helper_functions.dart';
 
 class TLoginHeader extends StatelessWidget {
   const TLoginHeader({
@@ -12,7 +12,7 @@ class TLoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
+    // final dark = THelperFunctions.isDarkMode(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
