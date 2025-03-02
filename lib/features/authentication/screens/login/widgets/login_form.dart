@@ -5,6 +5,7 @@ import 'package:goldyu/core/constants/sizes.dart';
 import 'package:goldyu/core/constants/text_strings.dart';
 import 'package:goldyu/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:goldyu/features/authentication/screens/signup/signup.dart';
+import 'package:goldyu/navigation_menu.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TLoginForm extends StatelessWidget {
@@ -63,7 +64,8 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () {}, child: const Text(TTexts.signIn)),
+                  onPressed: () => Get.to(() => NavigationMenu()),
+                  child: const Text(TTexts.signIn)),
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
 
