@@ -1,0 +1,2 @@
+D:/Git Repo/goldyu_flutter/android/app/.cxx/Debug/3j5y6v4q/x86/CMakeFiles/edit_cache.dir
+D:/Git Repo/goldyu_flutter/android/app/.cxx/Debug/3j5y6v4q/x86/CMakeFiles/rebuild_cache.dir
