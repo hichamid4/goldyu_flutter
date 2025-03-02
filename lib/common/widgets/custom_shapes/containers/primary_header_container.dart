@@ -14,27 +14,30 @@ class PrimaryHeaderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CurvedEdgesWidget(
-      child: Container(
-        color: TColors.primaryColor,
-        padding: const EdgeInsets.all(0),
-        child: Stack(
-          children: [
-            Positioned(
-              top: -150,
-              right: -250,
-              child: CircularContainer(
-                backgroundColor: TColors.textWhite.withOpacity(0.1),
+      child: SizedBox(
+        height: 400,
+        child: Container(
+          color: TColors.primaryColor,
+          padding: const EdgeInsets.all(0),
+          child: Stack(
+            children: [
+              Positioned(
+                top: -100,
+                right: -250,
+                child: CircularContainer(
+                  backgroundColor: TColors.textWhite.withOpacity(0.1),
+                ),
               ),
-            ),
-            Positioned(
-              top: 100,
-              right: -300,
-              child: CircularContainer(
-                backgroundColor: TColors.textWhite.withOpacity(0.1),
+              Positioned(
+                top: 100,
+                right: -300,
+                child: CircularContainer(
+                  backgroundColor: TColors.textWhite.withOpacity(0.1),
+                ),
               ),
-            ),
-            child,
-          ],
+              child,
+            ],
+          ),
         ),
       ),
     );

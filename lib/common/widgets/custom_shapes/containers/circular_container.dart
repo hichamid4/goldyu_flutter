@@ -22,15 +22,14 @@ class CircularContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: height,
+      width: width ?? 400,
+      height: height ?? 400,
       padding: EdgeInsets.all(padding ?? 0),
       decoration: BoxDecoration(
-        borderRadius:
-            BorderRadius.circular(radius ?? THelperFunctions.screenWidth()),
+        borderRadius: BorderRadius.circular(radius ?? 400),
         color: backgroundColor,
       ),
-      // child: child,
+      child: child,
     );
   }
 }
