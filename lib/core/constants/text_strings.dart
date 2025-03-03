@@ -6,12 +6,9 @@ class TTexts {
   static const String onBoardingTitle2 = "Organize Your Inventory";
   static const String onBoardingTitle3 = "Monitor Employee Performance";
 
-  static const String onBoardingSubTitle1 =
-      "Track and manage your store’s sales with ease, all in one place.";
-  static const String onBoardingSubTitle2 =
-      "Categorize products, assign models, and keep everything structured.";
-  static const String onBoardingSubTitle3 =
-      "Oversee your team’s sales and contributions in real time.";
+  static const String onBoardingSubTitle1 = "Track and manage your store’s sales with ease, all in one place.";
+  static const String onBoardingSubTitle2 = "Categorize products, assign models, and keep everything structured.";
+  static const String onBoardingSubTitle3 = "Oversee your team’s sales and contributions in real time.";
 
   // -- Home
   static const String homeAppBarTitle = "homeAppBarTitle";
@@ -20,24 +17,17 @@ class TTexts {
   // -- Authentication
 
   static const String loginTitle = "Wellcome Back";
-  static const String loginSubTitle =
-      "Discover Limitless Choices and Unmatched Convenience";
+  static const String loginSubTitle = "Discover Limitless Choices and Unmatched Convenience";
   static const String signUpTitle = "let's Create an Account";
   static const String forgotPasswordTitle = "Forgot Password";
-  static const String forgotPasswordSubTitle =
-      "Don't worry about sometimes people forgot their password enter email address so we can send you a password reset link";
+  static const String forgotPasswordSubTitle = "Don't worry about sometimes people forgot their password enter email address so we can send you a password reset link";
   static const String changeYoutPasswordTitle = "Password Reset Email Sent";
-  static const String changeYoutPasswordSubtitle =
-      "Your Account Security Is Our Priority! We have sent a secure link so that you can change your password";
+  static const String changeYoutPasswordSubtitle = "Your Account Security Is Our Priority! We have sent a secure link so that you can change your password";
   static const String confirmEmail = "Verify your email address";
-  static const String confirmEmailSubtitle =
-      "Congratulations! Your account awaits: Verify your email to start shopping experience";
-  static const String emailNotReciveMessage =
-      "Didn't get your email address check junk emails";
-  static const String yourAccountCreateTitle =
-      "Your Account Created Successfully";
-  static const String yourAccountCreatedSubtitle =
-      "Welcome to ultimate shopping destination";
+  static const String confirmEmailSubtitle = "Congratulations! Your account awaits: Verify your email to start shopping experience";
+  static const String emailNotReciveMessage = "Didn't get your email address check junk emails";
+  static const String yourAccountCreateTitle = "Your Account Created Successfully";
+  static const String yourAccountCreatedSubtitle = "Welcome to ultimate shopping destination";
 
   //----------------------------Authentication form text------------------------------------
 
@@ -68,5 +58,5 @@ class TTexts {
   //----------------------------Home Text------------------------------------
 
   static const String homeAppbarTitle1 = "Good day for shopping";
-  static const String homeAppbarSubtitleTitle1 = "Maaz Khan";
+  static const String homeAppbarSubtitleTitle1 = "Hicham Id Ahmed";
 }
