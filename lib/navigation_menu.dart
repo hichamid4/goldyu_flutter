@@ -10,7 +10,7 @@ class NavigationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Controller = Get.put(NavigationController());
+    final controller = Get.put(NavigationController());
     final dark = THelperFunctions.isDarkMode(context);
 
     return Scaffold(
@@ -18,14 +18,12 @@ class NavigationMenu extends StatelessWidget {
         () => NavigationBar(
           height: 80,
           elevation: 0,
-          selectedIndex: Controller.currentIndex.value,
+          selectedIndex: controller.currentIndex.value,
           onDestinationSelected: (index) {
-            Controller.currentIndex.value = index;
+            controller.currentIndex.value = index;
           },
           backgroundColor: dark ? Colors.black : Colors.white,
-          indicatorColor: dark
-              ? TColors.white.withOpacity(0.1)
-              : TColors.black.withOpacity(0.1),
+          indicatorColor: dark ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
             NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
@@ -34,7 +32,7 @@ class NavigationMenu extends StatelessWidget {
           ],
         ),
       ),
-      body: Obx(() => Controller.screens[Controller.currentIndex.value]),
+      body: Obx(() => controller.screens[controller.currentIndex.value]),
     );
   }
 }
@@ -42,10 +40,5 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> currentIndex = 0.obs;
 
-  final screens = [
-    HomeScreen(),
-    Container(color: Colors.purple),
-    Container(color: Colors.orange),
-    Container(color: Colors.blue)
-  ];
+  final screens = [HomeScreen(), Container(color: Colors.purple), Container(color: Colors.orange), Container(color: Colors.blue)];
 }
