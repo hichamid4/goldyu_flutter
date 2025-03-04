@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
-import 'package:goldyu/core/constants/colors.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:goldyu/core/constants/image_strings.dart';
 
 import 'package:goldyu/core/constants/sizes.dart';
 import 'package:goldyu/core/constants/text_strings.dart';
@@ -10,6 +10,7 @@ import 'package:goldyu/features/authentication/screens/password_configuration/fo
 import 'package:goldyu/features/authentication/screens/signup/signup.dart';
 import 'package:goldyu/navigation_menu.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:lottie/lottie.dart';
 
 class TLoginForm extends StatelessWidget {
   TLoginForm({
@@ -27,6 +28,7 @@ class TLoginForm extends StatelessWidget {
           children: [
             // Email
             TextFormField(
+              controller: loginController.emailController,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct_right),
                 labelText: TTexts.email,
@@ -75,9 +77,11 @@ class TLoginForm extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwSections),
 
             // Sign In Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(onPressed: () => Get.to(() => NavigationMenu()), child: const Text(TTexts.signIn)),
+            Obx(
+              () => SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(onPressed: loginController.login, child: loginController.isLoading.value ? Lottie.asset(TImages.loding, width: 30) : Text(TTexts.signIn)),
+              ),
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
 

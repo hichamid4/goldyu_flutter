@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:goldyu/core/helpers/secure_storage_helper.dart';
 
-class HttpClient {
+class THttpClient {
   static const String baseUrl = 'http://10.0.2.2:8000/api';
 
   /// GET request

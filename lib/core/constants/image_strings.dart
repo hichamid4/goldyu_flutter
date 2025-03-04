@@ -183,4 +183,8 @@ class TImages {
   static const String productImage73 = "assets/images/products/slipper-product-3.png";
 
   static const String userImage = "assets/images/products/user_img.jpg";
+
+  // loding
+
+  static const String loding = "assets/images/lotties/Loading.json";
 }
