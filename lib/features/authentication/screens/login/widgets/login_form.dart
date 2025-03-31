@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:goldyu/core/constants/image_strings.dart';
-
 import 'package:goldyu/core/constants/sizes.dart';
 import 'package:goldyu/core/constants/text_strings.dart';
 import 'package:goldyu/features/authentication/controllers/login.controller.dart';
 import 'package:goldyu/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:goldyu/features/authentication/screens/signup/signup.dart';
-import 'package:goldyu/navigation_menu.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
 
 class TLoginForm extends StatelessWidget {
-  TLoginForm({
-    super.key,
-  });
+  TLoginForm({super.key});
 
   final LoginController loginController = Get.put(LoginController());
 
@@ -26,9 +21,10 @@ class TLoginForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
         child: Column(
           children: [
-            // Email
+            // Email Input
             TextFormField(
               controller: loginController.emailController,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct_right),
                 labelText: TTexts.email,
@@ -36,21 +32,19 @@ class TLoginForm extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwInputFieldHeight),
 
-            // Password
+            // Password Input
             Obx(
               () => TextFormField(
                 controller: loginController.passwordController,
                 obscureText: loginController.isPasswordHidden.value,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Iconsax.password_check),
+                  prefixIcon: const Icon(Iconsax.password_check),
                   labelText: TTexts.password,
                   suffixIcon: IconButton(
                     icon: Icon(
                       loginController.isPasswordHidden.value ? Iconsax.eye_slash : Iconsax.eye,
                     ),
-                    onPressed: () {
-                      loginController.isPasswordHidden.toggle();
-                    },
+                    onPressed: loginController.isPasswordHidden.toggle,
                   ),
                 ),
               ),
@@ -58,21 +52,24 @@ class TLoginForm extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwInputFieldHeight / 2),
 
             // Remember Me & Forgot Password
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Remember Me
-                Row(
-                  children: [
-                    Checkbox(value: true, onChanged: (value) {}),
-                    const Text(TTexts.rememberMe),
-                  ],
-                ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     // Remember Me
+            //     Row(
+            //       children: [
+            //         Checkbox(value: true, onChanged: (value) {}),
+            //         const Text(TTexts.rememberMe),
+            //       ],
+            //     ),
 
-                // Forgot Password
-                TextButton(onPressed: () => Get.to(() => const ForgetPassword()), child: const Text(TTexts.forgotPassword)),
-              ],
-            ),
+            //     // Forgot Password
+            //     TextButton(
+            //       onPressed: () => Get.to(() => const ForgetPassword()),
+            //       child: const Text(TTexts.forgotPassword),
+            //     ),
+            //   ],
+            // ),
 
             const SizedBox(height: TSizes.spaceBtwSections),
 
@@ -80,7 +77,10 @@ class TLoginForm extends StatelessWidget {
             Obx(
               () => SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(onPressed: loginController.login, child: loginController.isLoading.value ? Lottie.asset(TImages.loding, width: 30) : Text(TTexts.signIn)),
+                child: ElevatedButton(
+                  onPressed: loginController.isLoading.value ? null : loginController.login,
+                  child: loginController.isLoading.value ? Lottie.asset(TImages.loding, width: 30) : Text(TTexts.signIn),
+                ),
               ),
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
@@ -88,7 +88,10 @@ class TLoginForm extends StatelessWidget {
             // Create Account Button
             SizedBox(
               width: double.infinity,
-              child: OutlinedButton(onPressed: () => Get.to(() => const SignupScreen()), child: const Text(TTexts.createAccount)),
+              child: OutlinedButton(
+                onPressed: () => Get.to(() => const SignupScreen()),
+                child: const Text(TTexts.createAccount),
+              ),
             ),
           ],
         ),

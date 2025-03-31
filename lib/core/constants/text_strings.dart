@@ -35,12 +35,13 @@ class TTexts {
   static const String lastName = "Last Name";
   static const String email = "E-mail";
   static const String password = "Password";
+  static const String confirmPassword = "Confirm Password";
   static const String newPassword = "New Password";
   static const String continuue = "Continue";
   static const String submit = "Submit";
   static const String done = "Done";
-  static const String username = "User Name";
-  static const String phoneNo = "Phone Number";
+  static const String username = "Full Name";
+  static const String phoneNo = "Phone Number (+212)";
   static const String rememberMe = "Remember Me";
   static const String forgotPassword = "Forgot Password";
   static const String signIn = "Sign In";

@@ -27,6 +27,17 @@ class THttpClient {
     }
   }
 
+  /// PUT request
+  static Future<http.Response> put(String endpoint, {dynamic data}) async {
+    final uri = Uri.parse('$baseUrl$endpoint');
+    final headers = await _buildHeaders();
+    try {
+      return await http.put(uri, headers: headers, body: jsonEncode(data));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   /// DELETE request
   static Future<http.Response> delete(String endpoint, {dynamic data}) async {
     final uri = Uri.parse('$baseUrl$endpoint');
