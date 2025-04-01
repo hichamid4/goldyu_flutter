@@ -49,6 +49,14 @@ class THttpClient {
     }
   }
 
+  static Future<Map<String, String>> validateToken(String token) async {
+    return {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+  }
+
   /// Build headers with Authorization token and default content type
   static Future<Map<String, String>> _buildHeaders() async {
     String? token = await SecureStorageHelper.getToken();

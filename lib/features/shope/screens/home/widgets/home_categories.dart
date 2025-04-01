@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goldyu/common/models/category.dart';
-import 'package:goldyu/common/models/type.dart';
 import 'package:goldyu/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:goldyu/core/constants/image_strings.dart';
 import 'package:goldyu/core/constants/sizes.dart';
@@ -193,13 +191,16 @@ class HomeCategories extends StatelessWidget {
               SizedBox(height: TSizes.spaceBtwItems),
 
               // Confirm Sale Button
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+              SizedBox(
+                // width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                  ),
+                  child: const Text("Confirm Sale"),
+                  onPressed: quickSaleController.submitSale,
                 ),
-                onPressed: () => quickSaleController.submitSale(),
-                child: const Text("Confirm Sale"),
               ),
             ],
           );

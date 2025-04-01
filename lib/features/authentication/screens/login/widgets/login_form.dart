@@ -52,24 +52,31 @@ class TLoginForm extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwInputFieldHeight / 2),
 
             // Remember Me & Forgot Password
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     // Remember Me
-            //     Row(
-            //       children: [
-            //         Checkbox(value: true, onChanged: (value) {}),
-            //         const Text(TTexts.rememberMe),
-            //       ],
-            //     ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Remember Me
+                Row(
+                  children: [
+                    Obx(
+                      () => Checkbox(
+                        value: loginController.rememberMe.value,
+                        onChanged: (value) {
+                          loginController.rememberMe.value = value!;
+                        },
+                      ),
+                    ),
+                    const Text(TTexts.rememberMe),
+                  ],
+                ),
 
-            //     // Forgot Password
-            //     TextButton(
-            //       onPressed: () => Get.to(() => const ForgetPassword()),
-            //       child: const Text(TTexts.forgotPassword),
-            //     ),
-            //   ],
-            // ),
+                // // Forgot Password
+                // TextButton(
+                //   onPressed: () => Get.to(() => const ForgetPassword()),
+                //   child: const Text(TTexts.forgotPassword),
+                // ),
+              ],
+            ),
 
             const SizedBox(height: TSizes.spaceBtwSections),
 
