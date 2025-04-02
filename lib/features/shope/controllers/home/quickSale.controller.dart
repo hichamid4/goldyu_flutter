@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goldyu/common/models/category.dart';
 import 'package:goldyu/common/models/saleItem.dart';
@@ -29,7 +30,7 @@ class QuickSaleController extends GetxController {
   }
 
   void resetSelection() {
-    selectedCategoryId.value = null;
+    selectedCategoryId.value = selectedCategoryId.value;
     selectedModelId.value = null;
     selectedTypeId.value = null;
     quantity.value = 1;
@@ -39,7 +40,13 @@ class QuickSaleController extends GetxController {
 
   void submitSale() async {
     if (selectedCategoryId.value == null || selectedModelId.value == null || selectedTypeId.value == null) {
-      Get.snackbar("Error", "Please complete the sale details");
+      resetSelection();
+      Get.snackbar(
+        "Error",
+        "Please complete the sale details",
+        backgroundColor: const Color.fromARGB(255, 194, 99, 92),
+        colorText: Colors.white,
+      );
       return;
     }
 
@@ -67,11 +74,17 @@ class QuickSaleController extends GetxController {
     try {
       // Send data to the backend using the API
       final response = await THttpClient.post('/sales', data: saleData);
+      print("Response: ${response}");
 
-      if (response != null) {
-        Get.snackbar("Success", "Sale submitted successfully!");
+      if (response.statusCode == 201) {
         resetSelection(); // Reset the fields after successful submission
         Get.back(); // Close the BottomSheet after submission
+        Get.snackbar(
+          "Success",
+          "Sale submitted successfully!",
+          backgroundColor: Colors.greenAccent,
+          colorText: Colors.white,
+        );
       } else {
         Get.snackbar("Error", "Failed to submit sale. Please try again.");
       }

@@ -19,12 +19,6 @@ class LoginController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  @override
-  void onInit() {
-    super.onInit();
-    _checkToken(); // Check token
-  }
-
   Future<void> login() async {
     isLoading.value = true;
     try {
@@ -69,7 +63,7 @@ class LoginController extends GetxController {
     );
   }
 
-  Future<void> _checkToken() async {
+  Future<void> checkToken() async {
     // Retrieve the token from secure storage
     String? token = await SecureStorageHelper.getToken();
 
@@ -92,8 +86,8 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
+    // emailController.dispose();
+    // passwordController.dispose();
     super.onClose();
   }
 }
