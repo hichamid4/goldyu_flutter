@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:goldyu/common/models/user.dart';
-import 'package:goldyu/core/constants/colors.dart';
-import 'package:goldyu/core/constants/sizes.dart';
-
+import 'package:get/get.dart';
 import 'package:goldyu/common/widgets/Texts/section_heading.dart';
-import 'package:goldyu/common/widgets/custom_shapes/containers/search_conatiner.dart';
 import 'package:goldyu/common/widgets/custom_shapes/containers/primary_header_container.dart';
+import 'package:goldyu/core/constants/sizes.dart';
+import 'package:goldyu/features/shope/controllers/employee/employee.controller.dart';
+import 'package:goldyu/features/shope/screens/employees/widgets/employees_list.dart';
 import 'package:goldyu/features/shope/screens/home/widgets/home_appbar.dart';
 import 'package:goldyu/features/shope/screens/home/widgets/home_categories.dart';
-import 'package:goldyu/features/shope/screens/home/widgets/recent_sales.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, this.data});
+class EmployeesScreen extends StatelessWidget {
+  EmployeesScreen({super.key});
 
-  final User? data;
+  final EmployeeController employeeController = Get.put(EmployeeController());
 
   @override
   Widget build(BuildContext context) {
+    employeeController.fetchEmployees();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -26,14 +25,14 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // -- AppBar --
-                  HomeAppBar(user: data!),
+                  HomeAppBar(),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   // -- SearchBar --
                   // SearchConatiner(text: 'Search in store'),
                   Center(
                     child: Text(
-                      'GOLDY welcomes you , ${data!.name}',
+                      'GOLDY welcomes you',
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                             color: const Color.fromARGB(255, 255, 255, 255),
                             fontSize: 20,
@@ -59,21 +58,8 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            // New Sections Below Categories
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SectionHeading(
-                  title: 'Your Sales Today:  ${DateTime.now().toString().substring(0, 10)}',
-                  showActionButton: false,
-                  textColor: TColors.darkerGrey,
-                ),
-              ],
-            ),
-
-            // Recent Sales
-            RecentSales(),
+            // Employee List
+            EmployeeList(),
           ],
         ),
       ),

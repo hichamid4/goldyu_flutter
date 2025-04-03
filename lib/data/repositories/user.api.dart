@@ -6,6 +6,19 @@ import 'package:goldyu/common/models/user.dart';
 import 'package:goldyu/data/providers/api_service.dart';
 
 class UserApi {
+  static Future<List<User>?> getUsers() async {
+    // Call the API
+    final response = await THttpClient.get('/employees');
+    if (response.statusCode == HttpStatus.ok) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+
+      if (data.containsKey('employees') && data['employees'] is List) {
+        return (data['employees'] as List).map((e) => User.fromJson(e)).toList();
+      }
+    }
+    return null;
+  }
+
   static Future<User?> getUser(int id) async {
     // Call the API
     final response = await THttpClient.get('/users/$id');
@@ -38,6 +51,16 @@ class UserApi {
   static Future<User?> createUser(User user) async {
     // Call the API
     final response = await THttpClient.post('/register', data: user.toJson());
+
+    if (response.statusCode == HttpStatus.created) {
+      return User.fromJson(jsonDecode(response.body));
+    }
+    return null;
+  }
+
+  static Future<User?> createEmployee(User user) async {
+    // Call the API
+    final response = await THttpClient.post('/create-employee', data: user.toJson());
 
     if (response.statusCode == HttpStatus.created) {
       return User.fromJson(jsonDecode(response.body));

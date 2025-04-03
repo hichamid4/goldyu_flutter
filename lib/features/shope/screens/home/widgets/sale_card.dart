@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:goldyu/core/constants/colors.dart';
+import 'package:goldyu/core/helpers/secure_storage_helper.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 
 class SaleCard extends StatelessWidget {
   final String userName;
-  final int totalPrice;
+  final double totalPrice;
   final double totalWeight;
   final String saleDate;
   final String saleTime;
@@ -72,11 +74,11 @@ class SaleCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '\$ $totalPrice',
+                      '${NumberFormat('#,###', 'fr_FR').format(totalPrice)} DH',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white, // Contrast with blue background
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -100,7 +102,7 @@ class SaleCard extends StatelessWidget {
                     ),
                     Text(
                       saleTime,
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                      style: TextStyle(fontSize: 12, color: const Color.fromARGB(255, 107, 105, 105)),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -117,8 +119,9 @@ class SaleCard extends StatelessWidget {
                     color: TColors.primaryColor,
                     size: 35,
                   ),
-                  onPressed: () {
-                    // Action for details
+                  onPressed: () async {
+                    String? token = await SecureStorageHelper.getToken();
+                    print(token);
                   },
                 ),
               ],

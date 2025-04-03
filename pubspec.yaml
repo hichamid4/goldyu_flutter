@@ -37,6 +37,10 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   lottie: ^3.2.0
   flutter_secure_storage: ^9.2.4
+  flutter_lints: ^5.0.0
+  pusher_channels_flutter: ^2.4.0
+  laravel_echo_null: ^0.1.0
+  lucide_icons_flutter: ^2.0.2
 
 
 
@@ -50,7 +54,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
 
 #------------- ./Dev Packages End -------------#
 

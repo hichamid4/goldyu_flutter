@@ -5,8 +5,10 @@ import 'package:goldyu/common/models/saleItem.dart';
 import 'package:goldyu/common/models/type.dart';
 import 'package:goldyu/data/providers/api_service.dart';
 import 'package:goldyu/data/repositories/model.api.dart';
+import 'package:goldyu/features/shope/controllers/sale.controller.dart';
 
 class QuickSaleController extends GetxController {
+  final SaleController _saleController = Get.put(SaleController());
   var selectedCategoryId = RxnInt();
   var selectedModelId = RxnInt();
   var selectedTypeId = RxnInt();
@@ -74,10 +76,10 @@ class QuickSaleController extends GetxController {
     try {
       // Send data to the backend using the API
       final response = await THttpClient.post('/sales', data: saleData);
-      print("Response: ${response}");
 
       if (response.statusCode == 201) {
         resetSelection(); // Reset the fields after successful submission
+        await _saleController.fetchFilteredSales('today=true');
         Get.back(); // Close the BottomSheet after submission
         Get.snackbar(
           "Success",

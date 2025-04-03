@@ -4,9 +4,9 @@ class User {
   final String name;
   final String email;
   final String phone;
-  final String role;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final String? role;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   User({
     required this.id,
@@ -14,9 +14,9 @@ class User {
     required this.name,
     required this.email,
     required this.phone,
-    required this.role,
-    required this.createdAt,
-    required this.updatedAt,
+    this.role,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -40,8 +40,8 @@ class User {
       'email': email,
       'phone': phone,
       'role': role,
-      'created_at': createdAt.toIso8601String(),
-      'updated_at': updatedAt.toIso8601String(),
+      'created_at': createdAt?.toIso8601String(),
+      'updated_at': updatedAt?.toIso8601String(),
     };
   }
 }

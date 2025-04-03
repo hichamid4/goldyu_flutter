@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goldyu/common/models/user.dart';
 import 'package:goldyu/core/constants/colors.dart';
 import 'package:goldyu/core/helpers/helper_functions.dart';
+import 'package:goldyu/features/authentication/controllers/user.controller.dart';
+import 'package:goldyu/features/shope/screens/employees/employees_screen.dart';
 import 'package:goldyu/features/shope/screens/home/home.dart';
+import 'package:goldyu/features/shope/screens/profile/profile.dart';
+import 'package:goldyu/features/shope/screens/sales/sales_screen.dart';
 import 'package:iconsax/iconsax.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -26,8 +31,8 @@ class NavigationMenu extends StatelessWidget {
           indicatorColor: dark ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
-            NavigationDestination(icon: Icon(Iconsax.heart), label: 'Wishlist'),
+            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Sales'),
+            NavigationDestination(icon: Icon(Iconsax.people), label: 'Employees'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
           ],
         ),
@@ -40,5 +45,12 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> currentIndex = 0.obs;
 
-  final screens = [HomeScreen(), Container(color: Colors.purple), Container(color: Colors.orange), Container(color: Colors.blue)];
+  UserController get userController => Get.find<UserController>();
+
+  List<Widget> get screens => [
+        Obx(() => HomeScreen(data: userController.user.value)),
+        Obx(() => SalesScreen()),
+        Obx(() => EmployeesScreen()),
+        Obx(() => ProfileScreen()),
+      ];
 }

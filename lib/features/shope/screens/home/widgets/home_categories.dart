@@ -14,10 +14,8 @@ class HomeCategories extends StatelessWidget {
 
   // void showQuickSaleBottomSheet(BuildContext context, int categoryId) async {
   //   final quickSaleController = Get.find<QuickSaleController>();
-
   //   // Fetch models for the selected category
   //   await categoriesController.selectCategory(categoryId);
-
   //   Get.bottomSheet(
   //     Container(
   //       padding: const EdgeInsets.all(16),
@@ -29,7 +27,6 @@ class HomeCategories extends StatelessWidget {
   //         final selectedCategory = categoriesController.selectedCategory.value;
   //         final models = selectedCategory?.models ?? [];
   //         List<TypeModel> types = [];
-
   //         return Column(
   //           mainAxisSize: MainAxisSize.min,
   //           children: [
@@ -51,7 +48,6 @@ class HomeCategories extends StatelessWidget {
   //               },
   //             ),
   //             SizedBox(height: TSizes.spaceBtwItems),
-
   //             // Type Dropdown (Only appears if a model is selected)
   //             if (quickSaleController.selectedModelId.value != null)
   //               DropdownButton<int>(
@@ -68,7 +64,6 @@ class HomeCategories extends StatelessWidget {
   //                 },
   //               ),
   //             SizedBox(height: TSizes.spaceBtwItems),
-
   //             // Quantity Input
   //             TextField(
   //               decoration: const InputDecoration(labelText: "Quantity"),
@@ -76,7 +71,6 @@ class HomeCategories extends StatelessWidget {
   //               onChanged: (val) => quickSaleController.quantity.value = int.tryParse(val) ?? 1,
   //             ),
   //             SizedBox(height: TSizes.spaceBtwItems),
-
   //             // Price Input
   //             TextField(
   //               decoration: const InputDecoration(labelText: "Price"),
@@ -84,7 +78,6 @@ class HomeCategories extends StatelessWidget {
   //               onChanged: (val) => quickSaleController.price.value = double.tryParse(val) ?? 0.0,
   //             ),
   //             SizedBox(height: TSizes.spaceBtwItems),
-
   //             // Weight Input
   //             TextField(
   //               decoration: const InputDecoration(labelText: "Weight"),
@@ -92,7 +85,6 @@ class HomeCategories extends StatelessWidget {
   //               onChanged: (val) => quickSaleController.weight.value = double.tryParse(val) ?? 0.0,
   //             ),
   //             SizedBox(height: TSizes.spaceBtwItems),
-
   //             // Confirm Sale Button
   //             ElevatedButton(
   //               style: ElevatedButton.styleFrom(

@@ -4,12 +4,15 @@ import 'package:goldyu/common/models/user.dart';
 import 'package:goldyu/core/constants/colors.dart';
 import 'package:goldyu/core/helpers/secure_storage_helper.dart';
 import 'package:goldyu/data/repositories/user.api.dart';
+import 'package:goldyu/features/authentication/controllers/user.controller.dart';
 import 'package:goldyu/features/authentication/screens/login/login.dart';
 import 'package:goldyu/features/shope/screens/home/home.dart';
+import 'package:goldyu/navigation_menu.dart';
 import 'package:iconsax/iconsax.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
+  final UserController _userController = Get.find<UserController>();
 
   var isLoading = false.obs;
   var isPasswordHidden = true.obs;
@@ -33,7 +36,8 @@ class LoginController extends GetxController {
         await SecureStorageHelper.saveToken(authResponse.token); // Store token
 
         // Navigate to HomeScreen with user data
-        Get.offAll(() => HomeScreen(data: authResponse.user));
+        _userController.setUser(authResponse.user);
+        Get.offAll(() => NavigationMenu());
       } else {
         showErrorSnackbar('Invalid credentials. Try again.');
       }

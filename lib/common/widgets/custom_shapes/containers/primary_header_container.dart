@@ -7,15 +7,16 @@ class PrimaryHeaderContainer extends StatelessWidget {
   const PrimaryHeaderContainer({
     super.key,
     required this.child,
+    this.height = 400,
   });
-
+  final double? height;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return CurvedEdgesWidget(
       child: SizedBox(
-        height: 400,
+        height: height,
         child: Container(
           color: TColors.primaryColor,
           padding: const EdgeInsets.all(0),

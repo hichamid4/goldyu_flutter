@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:goldyu/common/models/user.dart';
+import 'package:get/get.dart';
+import 'package:goldyu/common/widgets/Texts/section_heading.dart';
+import 'package:goldyu/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:goldyu/core/constants/colors.dart';
 import 'package:goldyu/core/constants/sizes.dart';
-
-import 'package:goldyu/common/widgets/Texts/section_heading.dart';
-import 'package:goldyu/common/widgets/custom_shapes/containers/search_conatiner.dart';
-import 'package:goldyu/common/widgets/custom_shapes/containers/primary_header_container.dart';
+import 'package:goldyu/features/shope/controllers/sale.controller.dart';
 import 'package:goldyu/features/shope/screens/home/widgets/home_appbar.dart';
 import 'package:goldyu/features/shope/screens/home/widgets/home_categories.dart';
-import 'package:goldyu/features/shope/screens/home/widgets/recent_sales.dart';
+import 'package:goldyu/features/shope/screens/home/widgets/sale_card.dart';
+import 'package:goldyu/features/shope/screens/sales/widgets/sales_filter.dart';
+import 'package:goldyu/features/shope/screens/sales/widgets/sales_list.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, this.data});
+class SalesScreen extends StatelessWidget {
+  SalesScreen({super.key});
 
-  final User? data;
+  final SaleController saleController = Get.put(SaleController());
 
   @override
   Widget build(BuildContext context) {
+    saleController.fetchSales();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -26,20 +28,12 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // -- AppBar --
-                  HomeAppBar(user: data!),
+                  HomeAppBar(),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   // -- SearchBar --
                   // SearchConatiner(text: 'Search in store'),
-                  Center(
-                    child: Text(
-                      'GOLDY welcomes you , ${data!.name}',
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 20,
-                          ),
-                    ),
-                  ),
+                  SalesFilterWidget(),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   // -- Categories --
@@ -60,20 +54,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            // New Sections Below Categories
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SectionHeading(
-                  title: 'Your Sales Today:  ${DateTime.now().toString().substring(0, 10)}',
-                  showActionButton: false,
-                  textColor: TColors.darkerGrey,
-                ),
-              ],
-            ),
-
-            // Recent Sales
-            RecentSales(),
+            // Sales
+            SalesList(),
           ],
         ),
       ),
