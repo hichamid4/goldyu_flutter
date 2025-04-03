@@ -1,24 +1,24 @@
 class SaleItem {
-  int id;
-  int saleId;
+  int? id;
+  int? saleId;
   int categoryId;
   int modelId;
   int typeId;
   int quantity;
   double price;
   double weight;
-  double pricePerGram;
+  double? pricePerGram;
 
   SaleItem({
-    required this.id,
-    required this.saleId,
+    this.id,
+    this.saleId,
     required this.categoryId,
     required this.modelId,
     required this.typeId,
     required this.quantity,
     required this.price,
     required this.weight,
-    required this.pricePerGram,
+    this.pricePerGram,
   });
 
   factory SaleItem.fromJson(Map<String, dynamic> json) {

@@ -12,14 +12,14 @@ class SalesFilterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       final List<Map<String, dynamic>> filters = [
-        {
-          "icon": LucideIcons.layers,
-          "hint": "Category",
-          "items": saleController.categories.map((cat) {
-            return {"id": cat.id, "name": cat.name};
-          }).toList(),
-          "selected": saleController.selectedCategory.value,
-        },
+        // {
+        //   "icon": LucideIcons.layers,
+        //   "hint": "Category",
+        //   "items": saleController.categories.map((cat) {
+        //     return {"id": cat.id.toString(), "name": cat.name};
+        //   }).toList(),
+        //   "selected": saleController.selectedCategory.value,
+        // },
         {
           "icon": LucideIcons.dollarSign,
           "hint": "Price",
@@ -55,8 +55,8 @@ class SalesFilterWidget extends StatelessWidget {
                 context: context,
                 icon: filter["icon"],
                 hint: filter["hint"],
-                items: filter["items"],
-                selected: filter["selected"],
+                items: filter["items"] as List<Map<String, String>>,
+                selected: filter["selected"] as String?,
                 onSelected: (val) {
                   saleController.updateFilter(filter["hint"], val);
                 },
@@ -72,15 +72,15 @@ class SalesFilterWidget extends StatelessWidget {
     required BuildContext context,
     required IconData icon,
     required String hint,
-    required List<Map<String, Object>> items,
+    required List<Map<String, String>> items,
     required String? selected,
     required ValueChanged<String> onSelected,
   }) {
     // Find the name of the selected item
     final selectedName = items.firstWhere(
-      (item) => item["id"].toString() == selected,
-      orElse: () => {"name": hint},
-    )["name"] as String;
+      (item) => item["id"] == selected,
+      orElse: () => {"id": "", "name": hint},
+    )["name"]!;
 
     return PopupMenuButton<String>(
       onSelected: onSelected,
@@ -92,9 +92,9 @@ class SalesFilterWidget extends StatelessWidget {
       itemBuilder: (context) {
         return items.map((item) {
           return PopupMenuItem<String>(
-            value: item["id"].toString(),
+            value: item["id"],
             child: Text(
-              item["name"] as String,
+              item["name"]!,
               style: const TextStyle(fontSize: 16),
             ),
           );

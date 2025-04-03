@@ -29,28 +29,37 @@ class NavigationMenu extends StatelessWidget {
           },
           backgroundColor: dark ? Colors.black : Colors.white,
           indicatorColor: dark ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
-          destinations: const [
-            NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Sales'),
-            NavigationDestination(icon: Icon(Iconsax.people), label: 'Employees'),
-            NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
-          ],
+          destinations: controller.destinations, // Use dynamic destinations
         ),
       ),
-      body: Obx(() => controller.screens[controller.currentIndex.value]),
+      body: Obx(() => controller.screens[controller.currentIndex.value]), // Use dynamic screens
     );
   }
 }
 
 class NavigationController extends GetxController {
+  UserController get userController => Get.find<UserController>();
   final Rx<int> currentIndex = 0.obs;
 
-  UserController get userController => Get.find<UserController>();
+  // Dynamically generate screens based on user role
+  List<Widget> get screens {
+    final isAdmin = userController.user.value?.role == 'admin';
+    return [
+      Obx(() => HomeScreen(data: userController.user.value)),
+      Obx(() => SalesScreen()),
+      if (isAdmin) Obx(() => EmployeesScreen()), // Only show EmployeesScreen for admins
+      Obx(() => ProfileScreen()),
+    ];
+  }
 
-  List<Widget> get screens => [
-        Obx(() => HomeScreen(data: userController.user.value)),
-        Obx(() => SalesScreen()),
-        Obx(() => EmployeesScreen()),
-        Obx(() => ProfileScreen()),
-      ];
+  // Dynamically generate destinations based on user role
+  List<NavigationDestination> get destinations {
+    final isAdmin = userController.user.value?.role == 'admin';
+    return [
+      const NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
+      const NavigationDestination(icon: Icon(Iconsax.shop), label: 'Sales'),
+      if (isAdmin) const NavigationDestination(icon: Icon(Iconsax.people), label: 'Employees'), // Only show for admins
+      const NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
+    ];
+  }
 }

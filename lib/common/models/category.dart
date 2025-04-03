@@ -21,7 +21,7 @@ class Category {
   // Convert JSON to Model
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
-      id: json['id'],
+      id: int.parse(json['id'].toString()),
       name: json['name'],
       adminId: json['admin_id'],
       createdAt: json['created_at'] != null ? DateTime.tryParse(json['created_at']) : null,

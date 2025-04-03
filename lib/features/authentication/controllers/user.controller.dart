@@ -9,6 +9,9 @@ class UserController extends GetxController {
   // Existing method
   void setUser(User newUser) {
     user.value = newUser;
+    nameController.text = newUser.name;
+    emailController.text = newUser.email;
+    phoneController.text = newUser.phone;
   }
 
   // New fields for profile editing

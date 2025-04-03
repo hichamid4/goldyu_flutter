@@ -7,7 +7,7 @@ import 'package:goldyu/features/shope/screens/home/widgets/home_appbar.dart';
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
 
-  final UserController userController = Get.put(UserController());
+  final UserController userController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -41,51 +41,35 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   // Name Field
-                  Obx(() => _buildEditableField(
-                        label: "Name",
-                        controller: userController.nameController,
-                        isEditable: userController.isNameEditable.value,
-                        onDoubleTap: () {
-                          userController.toggleNameEditable();
-                        },
-                      )),
+                  _buildEditableField(
+                    label: "Name",
+                    controller: userController.nameController,
+                  ),
 
                   const SizedBox(height: 16),
 
                   // Email Field
-                  Obx(() => _buildEditableField(
-                        label: "Email",
-                        controller: userController.emailController,
-                        isEditable: userController.isEmailEditable.value,
-                        onDoubleTap: () {
-                          userController.toggleEmailEditable();
-                        },
-                      )),
+                  _buildEditableField(
+                    label: "Email",
+                    controller: userController.emailController,
+                  ),
 
                   const SizedBox(height: 16),
 
                   // Phone Number Field
-                  Obx(() => _buildEditableField(
-                        label: "Phone Number",
-                        controller: userController.phoneController,
-                        isEditable: userController.isPhoneEditable.value,
-                        onDoubleTap: () {
-                          userController.togglePhoneEditable();
-                        },
-                      )),
+                  _buildEditableField(
+                    label: "Phone Number",
+                    controller: userController.phoneController,
+                  ),
 
                   const SizedBox(height: 16),
 
                   // Password Field
-                  Obx(() => _buildEditableField(
-                        label: "Password",
-                        controller: userController.passwordController,
-                        isEditable: userController.isPasswordEditable.value,
-                        onDoubleTap: () {
-                          userController.togglePasswordEditable();
-                        },
-                        isObscured: true, // Hide password by default
-                      )),
+                  _buildEditableField(
+                    label: "Password",
+                    controller: userController.passwordController,
+                    isObscured: true, // Hide password by default
+                  ),
 
                   const SizedBox(height: 32),
 
@@ -120,27 +104,21 @@ class ProfileScreen extends StatelessWidget {
   Widget _buildEditableField({
     required String label,
     required TextEditingController controller,
-    required bool isEditable,
-    required VoidCallback onDoubleTap,
     bool isObscured = false,
   }) {
-    return GestureDetector(
-      onDoubleTap: onDoubleTap,
-      child: TextField(
-        controller: controller,
-        enabled: isEditable,
-        obscureText: isObscured,
-        decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          filled: true,
-          fillColor: isEditable ? Colors.white : Colors.grey.shade200,
+    return TextField(
+      controller: controller,
+      obscureText: isObscured,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
         ),
-        style: TextStyle(
-          color: isEditable ? Colors.black : Colors.grey.shade600,
-        ),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+      style: const TextStyle(
+        color: Colors.black,
       ),
     );
   }

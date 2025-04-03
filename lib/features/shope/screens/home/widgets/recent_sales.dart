@@ -13,7 +13,7 @@ class RecentSales extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Fetch filtered sales for today
-    saleController.fetchFilteredSales('today=true');
+    saleController.fetchTodaySales();
 
     return Padding(
       padding: const EdgeInsets.all(TSizes.defaultSpace),

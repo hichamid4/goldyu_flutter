@@ -79,7 +79,7 @@ class QuickSaleController extends GetxController {
 
       if (response.statusCode == 201) {
         resetSelection(); // Reset the fields after successful submission
-        await _saleController.fetchFilteredSales('today=true');
+        await _saleController.fetchTodaySales();
         Get.back(); // Close the BottomSheet after submission
         Get.snackbar(
           "Success",
