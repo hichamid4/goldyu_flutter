@@ -190,8 +190,8 @@ class HomeCategories extends StatelessWidget {
                     backgroundColor: Colors.blue,
                     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                   ),
-                  child: const Text("Confirm Sale"),
                   onPressed: quickSaleController.submitSale,
+                  child: const Text("Confirm Sale"),
                 ),
               ),
             ],
@@ -215,7 +215,7 @@ class HomeCategories extends StatelessWidget {
             final category = categoriesController.categories[index];
 
             return VerticalImageText(
-              image: TImages.shoeIcon,
+              image: (category.image?.isNotEmpty == true) ? category.image! : TImages.productImage1,
               title: category.name,
               onTap: () {
                 quickSaleController.selectedCategoryId.value = category.id;

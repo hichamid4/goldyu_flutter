@@ -104,25 +104,12 @@ class SaleCard extends StatelessWidget {
                       saleTime,
                       style: TextStyle(fontSize: 12, color: const Color.fromARGB(255, 107, 105, 105)),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      userName,
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    ),
+                    // const SizedBox(height: 8),
+                    // Text(
+                    //   userName,
+                    //   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    // ),
                   ],
-                ),
-
-                // Action Button
-                IconButton(
-                  icon: Icon(
-                    Iconsax.info_circle5,
-                    color: TColors.primaryColor,
-                    size: 35,
-                  ),
-                  onPressed: () async {
-                    String? token = await SecureStorageHelper.getToken();
-                    print(token);
-                  },
                 ),
               ],
             ),
