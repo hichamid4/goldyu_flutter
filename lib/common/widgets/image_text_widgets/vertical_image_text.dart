@@ -37,7 +37,7 @@ class VerticalImageText extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Image(image: AssetImage(image), fit: BoxFit.cover, color: dark ? TColors.light : TColors.black),
+                child: Image(image: NetworkImage('https://web-production-c36bb.up.railway.app/$image'), fit: BoxFit.cover, color: dark ? TColors.light : TColors.black),
               ),
             ),
 

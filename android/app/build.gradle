@@ -46,6 +46,7 @@ flutter {
 
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
+    implementation 'org.slf4j:slf4j-android:1.7.32'
 }
 
 apply plugin: 'com.google.gms.google-services'

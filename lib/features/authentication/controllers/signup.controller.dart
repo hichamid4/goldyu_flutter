@@ -3,15 +3,17 @@ import 'package:get/get.dart';
 import 'package:goldyu/common/models/user.dart';
 import 'package:goldyu/core/helpers/secure_storage_helper.dart';
 import 'package:goldyu/data/providers/api_service.dart';
+import 'package:goldyu/features/authentication/controllers/user.controller.dart';
 import 'dart:convert';
 
-import 'package:goldyu/features/shope/screens/home/home.dart';
+import 'package:goldyu/navigation_menu.dart';
 
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
 
   var isLoading = false.obs;
   final Rxn<User> user = Rxn<User>();
+  final UserController _userController = Get.find<UserController>();
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -35,23 +37,28 @@ class SignupController extends GetxController {
         'phone': phoneController.text,
       }).timeout(const Duration(seconds: 5));
 
+      print('Response Status Code: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+
       final data = jsonDecode(response.body);
 
       if (response.statusCode == 201) {
         String token = data['token'];
         await SecureStorageHelper.saveToken(token);
 
+        // Parse the user object and assign it to the reactive user
         user.value = User.fromJson(data['user']);
+        _userController.user.value = user.value; // Correctly assign the reactive user
 
         // Show success message
         showSuccessOverlay();
 
         await Future.delayed(const Duration(seconds: 2)); // Wait before redirecting
 
-        Get.offAll(() => HomeScreen(data: data['user'])); // Navigate to home
+        Get.offAll(() => NavigationMenu()); // Navigate to home
       } else {
         print('Signup Failed: ${data['message']}');
-        Get.back(); // Remove overlay
+        Get.back();
         Get.snackbar(
           'Error',
           data['message'] ?? 'Something went wrong',

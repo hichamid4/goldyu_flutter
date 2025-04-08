@@ -1,0 +1,2 @@
+C:/Users/hicha/OneDrive/Desktop/goldyu/android/app/.cxx/RelWithDebInfo/2v5w3o37/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/hicha/OneDrive/Desktop/goldyu/android/app/.cxx/RelWithDebInfo/2v5w3o37/arm64-v8a/CMakeFiles/rebuild_cache.dir
